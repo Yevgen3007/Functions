@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 void FillRand(int arr[], const int N);
 void PrintArr(int arr[], const int N);
@@ -24,9 +24,9 @@ void main()
 	maxValueInArr(arr, N);
 	int step;
 	char side;
-	cout << "На сколько двигаем? "; cin >> step;
-	cout << "Куда двигаем? '+' - вправо, '-' - влево  "; cin >> side;
-	while (step > N) step -= N; // Чтобы двигать с шагом больше, чем N
+	cout << "РќР° СЃРєРѕР»СЊРєРѕ РґРІРёРіР°РµРј? "; cin >> step;
+	cout << "РљСѓРґР° РґРІРёРіР°РµРј? '+' - РІРїСЂР°РІРѕ, '-' - РІР»РµРІРѕ  "; cin >> side;
+	while (step > N) step -= N; // Р§С‚РѕР±С‹ РґРІРёРіР°С‚СЊ СЃ С€Р°РіРѕРј Р±РѕР»СЊС€Рµ, С‡РµРј N
 	switch (side)
 	{
 	case '-':shiftLeft(arr, N, step); break;
@@ -34,7 +34,7 @@ void main()
 	default: main();
 	}
 	UniqueRand(arr, N);
-	cout << endl << "\t\t\t" << "Массив уникальных чисел" << endl;
+	cout << endl << "\t\t\t" << "РњР°СЃСЃРёРІ СѓРЅРёРєР°Р»СЊРЅС‹С… С‡РёСЃРµР»" << endl;
 	PrintArr(arr, N);
 }
 void FillRand(int arr[], const int N)
@@ -67,7 +67,7 @@ void SummArr(int arr[], const int N)
 	{
 		summ += arr[i];
 	}
-	cout << "Сумма элементов массива: " << summ << endl;
+	cout << "РЎСѓРјРјР° СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°: " << summ << endl;
 }
 void AvgArr(int arr[], const int N)
 {
@@ -76,7 +76,7 @@ void AvgArr(int arr[], const int N)
 	{
 		summ += arr[i];
 	}
-	cout << "Среднее арифметическое элементов массива: " << summ / N << endl;
+	cout << "РЎСЂРµРґРЅРµРµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°: " << summ / N << endl;
 }
 void minValueInArr(int arr[], const int N)
 {
@@ -85,7 +85,7 @@ void minValueInArr(int arr[], const int N)
 	{
 		if (arr[i] < min) min = arr[i];
 	}
-	cout << "Минимальный элемент массива: " << min << endl;
+	cout << "РњРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР°: " << min << endl;
 }
 void maxValueInArr(int arr[], const int N)
 {
@@ -94,7 +94,7 @@ void maxValueInArr(int arr[], const int N)
 	{
 		if (arr[i] > max) max = arr[i];
 	}
-	cout << "Максимальный элемент массива: " << max << endl;
+	cout << "РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РјР°СЃСЃРёРІР°: " << max << endl;
 }
 void shiftLeft(int arr[], const int N, int step)
 {
@@ -130,5 +130,5 @@ void UniqueRand(int arr[], const int N)
 				arr[j] = rand() % 100;
 			}
 		}
-	} //Проверка чисел на уникальность
+	} //РџСЂРѕРІРµСЂРєР° С‡РёСЃРµР» РЅР° СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚СЊ
 }
