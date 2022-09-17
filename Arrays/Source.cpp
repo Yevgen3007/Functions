@@ -9,7 +9,6 @@ void minValueInArr(int arr[], const int N);
 void maxValueInArr(int arr[], const int N);
 void shiftLeft(int arr[], const int N, int step);
 void shiftRight(int arr[], const int N, int step);
-void UniqueRand(int arr[], const int N);
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -33,9 +32,6 @@ void main()
 	case '+':shiftRight(arr, N, step); break;
 	default: main();
 	}
-	UniqueRand(arr, N);
-	cout << endl << "\t\t\t" << "Массив уникальных чисел" << endl;
-	PrintArr(arr, N);
 }
 void FillRand(int arr[], const int N)
 {
@@ -76,7 +72,7 @@ void AvgArr(int arr[], const int N)
 	{
 		summ += arr[i];
 	}
-	cout << "Среднее арифметическое элементов массива: " << summ / N << endl;
+	cout << "Среднее арифметическое элементов массива: " << (double)summ / N << endl;
 }
 void minValueInArr(int arr[], const int N)
 {
@@ -113,22 +109,4 @@ void shiftRight(int arr[], const int N, int step)
 		else cout << arr[i - step] << '\t';
 	}
 	cout << endl;
-}
-void UniqueRand(int arr[], const int N)
-{
-	for (int i = 0; i < N; i++)
-	{
-		arr[i] = rand() % 100;
-	}
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			if (i == j) continue;
-			while (arr[i] == arr[j])
-			{
-				arr[j] = rand() % 100;
-			}
-		}
-	} //Проверка чисел на уникальность
 }
