@@ -1,15 +1,24 @@
 ﻿#include <iostream>
 using namespace std;
 void FillRand(int arr[], const int N);
-void PrintArr(int arr[], const int N);
-void ReversPrintArr(int arr[], const int N);
-int SummArr(int arr[], const int N);
-double AvgArr(int arr[], const int N);
-int minValueInArr(int arr[], const int N);
-int maxValueInArr(int arr[], const int N);
-void shiftLeft(int arr[], const int N, int step);
-void shiftRight(int arr[], const int N, int step);
-void Sort(int arr[], const int n);
+template<typename T>
+void PrintArr(T arr[], const int N);
+template<typename T>
+void ReversPrintArr(T arr[], const int N);
+template<typename T>
+T SummArr(T arr[], const int N);
+template<typename T>
+double AvgArr(T arr[], const int N);
+template<typename T>
+T minValueInArr(T arr[], const int N);
+template<typename T>
+T maxValueInArr(T arr[], const int N);
+template<typename T>
+void shiftLeft(T arr[], const int N, int step);
+template<typename T>
+void shiftRight(T arr[], const int N, int step);
+template<typename T>
+void Sort(T arr[], const int n);
 void UniqueRand(int arr[], const int n);
 void main()
 {
@@ -48,7 +57,8 @@ void FillRand(int arr[], const int N)
 		arr[i] = rand() % 100;
 	}
 }
-void PrintArr(int arr[], const int N)
+template<typename T>
+void PrintArr(T arr[], const int N)
 {
 	for (int i = 0; i < N; i++)
 	{
@@ -56,7 +66,8 @@ void PrintArr(int arr[], const int N)
 	}
 	cout << endl;
 }
-void ReversPrintArr(int arr[], const int N)
+template<typename T>
+void ReversPrintArr(T arr[], const int N)
 {
 	for (int i = 0; i < N; i++)
 	{
@@ -64,42 +75,47 @@ void ReversPrintArr(int arr[], const int N)
 	}
 	cout << endl;
 }
-int SummArr(int arr[], const int N)
+template<typename T>
+T SummArr(T arr[], const int N)
 {
-	int summ = 0;
+	T summ = 0;
 	for (int i = 0; i < N; i++)
 	{
 		summ += arr[i];
 	}
 	return summ;
 }
-double AvgArr(int arr[], const int N)
+template<typename T>
+double AvgArr(T arr[], const int N)
 {
 	return (double)SummArr(arr, N) / N;
 }
-int minValueInArr(int arr[], const int N)
+template<typename T>
+T minValueInArr(T arr[], const int N)
 {
-	int min = INT_MAX;
+	T min = INT_MAX;
 	for (int i = 0; i < N; i++)
 	{
 		if (arr[i] < min) min = arr[i];
 	}
 	return min;
 }
-int maxValueInArr(int arr[], const int N)
+template<typename T>
+T maxValueInArr(T arr[], const int N)
 {
-	int max = INT_MIN;
+	T max = INT_MIN;
 	for (int i = 0; i < N; i++)
 	{
 		if (arr[i] > max) max = arr[i];
 	}
 	return max;
 }
-void shiftLeft(int arr[], const int n, int step)
+template<typename T>
+void shiftLeft(T arr[], const int n, int step)
 {
 	for (int i = 0; i < step; i++)
 	{
-		int temp = arr[0];
+		T temp = arr[0];
 		for (int i = 0; i < n; i++)
 		{
 			arr[i] = arr[i + 1];
@@ -107,11 +123,13 @@ void shiftLeft(int arr[], const int n, int step)
 		arr[n - 1] = temp;
 	}
 }
-void shiftRight(int arr[], const int n, int step)
+template<typename T>
+void shiftRight(T arr[], const int n, int step)
 {
 	shiftLeft(arr, n, n - step);
 }
-void Sort(int arr[], const int n)
+template<typename T>
+void Sort(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -121,7 +139,7 @@ void Sort(int arr[], const int n)
 			//arr[j] - перебираемый элемент
 			if (arr[j] < arr[i])
 			{
-				int buffer = arr[i];
+				T buffer = arr[i];
 				arr[i] = arr[j];
 				arr[j] = buffer;
 			}
