@@ -3,12 +3,14 @@ using namespace std;
 void FillRand(int arr[], const int N);
 void PrintArr(int arr[], const int N);
 void ReversPrintArr(int arr[], const int N);
-void SummArr(int arr[], const int N);
-void AvgArr(int arr[], const int N);
-void minValueInArr(int arr[], const int N);
-void maxValueInArr(int arr[], const int N);
+int SummArr(int arr[], const int N);
+double AvgArr(int arr[], const int N);
+int minValueInArr(int arr[], const int N);
+int maxValueInArr(int arr[], const int N);
 void shiftLeft(int arr[], const int N, int step);
 void shiftRight(int arr[], const int N, int step);
+void Sort(int arr[], const int n);
+void UniqueRand(int arr[], const int n);
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -17,21 +19,27 @@ void main()
 	FillRand(arr, N);
 	PrintArr(arr, N);
 	ReversPrintArr(arr, N);
-	SummArr(arr, N);
-	AvgArr(arr, N);
-	minValueInArr(arr, N);
-	maxValueInArr(arr, N);
+	cout << "Сумма элементов массива: " << SummArr(arr, N) << endl;
+	cout << "Среднее арифметическое элементов массива: " << AvgArr(arr, N) << endl;
+	cout << "Минимальный элемент массива: " << minValueInArr(arr, N) << endl;
+	cout << "Максимальный элемент массива: " << maxValueInArr(arr, N) << endl;
 	int step;
-	char side;
 	cout << "На сколько двигаем? "; cin >> step;
-	cout << "Куда двигаем? '+' - вправо, '-' - влево  "; cin >> side;
 	while (step > N) step -= N; // Чтобы двигать с шагом больше, чем N
-	switch (side)
-	{
-	case '-':shiftLeft(arr, N, step); break;
-	case '+':shiftRight(arr, N, step); break;
-	default: main();
-	}
+	cout << endl;
+	cout << "\t\t\t" << "Сдвиг влево" << endl;
+	shiftLeft(arr, N, step);
+	PrintArr(arr, N);
+	cout << endl;
+	cout << "\t\t\t" << "Сдвиг вправо" << endl;
+	shiftRight(arr, N, step);
+	PrintArr(arr, N);
+	cout << endl;
+	cout << "\t\t\t" << "Массив уникальных чисел" << endl;
+	UniqueRand(arr, N);
+	PrintArr(arr, N);
+	Sort(arr, N);
+	PrintArr(arr, N);
 }
 void FillRand(int arr[], const int N)
 {
@@ -56,57 +64,87 @@ void ReversPrintArr(int arr[], const int N)
 	}
 	cout << endl;
 }
-void SummArr(int arr[], const int N)
+int SummArr(int arr[], const int N)
 {
 	int summ = 0;
 	for (int i = 0; i < N; i++)
 	{
 		summ += arr[i];
 	}
-	cout << "Сумма элементов массива: " << summ << endl;
+	return summ;
 }
-void AvgArr(int arr[], const int N)
+double AvgArr(int arr[], const int N)
 {
-	int summ = 0;
-	for (int i = 0; i < N; i++)
-	{
-		summ += arr[i];
-	}
-	cout << "Среднее арифметическое элементов массива: " << (double)summ / N << endl;
+	return (double)SummArr(arr, N) / N;
 }
-void minValueInArr(int arr[], const int N)
+int minValueInArr(int arr[], const int N)
 {
 	int min = INT_MAX;
 	for (int i = 0; i < N; i++)
 	{
 		if (arr[i] < min) min = arr[i];
 	}
-	cout << "Минимальный элемент массива: " << min << endl;
+	return min;
 }
-void maxValueInArr(int arr[], const int N)
+int maxValueInArr(int arr[], const int N)
 {
 	int max = INT_MIN;
 	for (int i = 0; i < N; i++)
 	{
 		if (arr[i] > max) max = arr[i];
 	}
-	cout << "Максимальный элемент массива: " << max << endl;
+	return max;
 }
-void shiftLeft(int arr[], const int N, int step)
+void shiftLeft(int arr[], const int n, int step)
 {
-	for (int i = 0; i < N; i++)
+	for (int i = 0; i < step; i++)
 	{
-		if (i + step > N - 1) cout << arr[i + step - N] << '\t';
-		else cout << arr[i + step] << '\t';
+		int temp = arr[0];
+		for (int i = 0; i < n; i++)
+		{
+			arr[i] = arr[i + 1];
+		}
+		arr[n - 1] = temp;
 	}
-	cout << endl;
 }
-void shiftRight(int arr[], const int N, int step)
+void shiftRight(int arr[], const int n, int step)
 {
-	for (int i = 0; i < N; i++)
+	shiftLeft(arr, n, n - step);
+}
+void Sort(int arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
 	{
-		if (i - step < 0) cout << arr[N + i - step] << '\t';
-		else cout << arr[i - step] << '\t';
+		for (int j = i + 1; j < n; j++)
+		{
+			//arr[i] - выбранный элемент
+			//arr[j] - перебираемый элемент
+			if (arr[j] < arr[i])
+			{
+				int buffer = arr[i];
+				arr[i] = arr[j];
+				arr[j] = buffer;
+			}
+		}
 	}
-	cout << endl;
+}
+void UniqueRand(int arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		bool unique;
+		do
+		{
+			arr[i] = rand() % (n + 2);
+			unique = true;
+			for (int j = 0; j < i; j++)
+			{
+				if (arr[i] == arr[j])
+				{
+					unique = false;
+					break;
+				}
+			}
+		} while (!unique);
+	}
 }
