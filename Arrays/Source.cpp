@@ -1,6 +1,9 @@
 ﻿#include <iostream>
+#define TAB_4 "\t\t\t\t"
+#define TAB_1 "\t"
 using namespace std;
 void FillRand(int arr[], const int N);
+void FillRand(double arr[], const int N);
 template<typename T>
 void PrintArr(T arr[], const int N);
 template<typename T>
@@ -20,41 +23,84 @@ void shiftRight(T arr[], const int N, int step);
 template<typename T>
 void Sort(T arr[], const int n);
 void UniqueRand(int arr[], const int n);
+void UniqueRand(double arr[], const int n);
 void main()
 {
 	setlocale(LC_ALL, "");
 	const int N = 10;
 	int arr[N];
+	double arr_d[N];
 	FillRand(arr, N);
+	FillRand(arr_d, N);
+	cout << TAB_4 << "INT";
 	PrintArr(arr, N);
+	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	PrintArr(arr_d, N);
+	cout << endl << TAB_4 << "INT"<<endl;
 	ReversPrintArr(arr, N);
-	cout << "Сумма элементов массива: " << SummArr(arr, N) << endl;
-	cout << "Среднее арифметическое элементов массива: " << AvgArr(arr, N) << endl;
-	cout << "Минимальный элемент массива: " << minValueInArr(arr, N) << endl;
-	cout << "Максимальный элемент массива: " << maxValueInArr(arr, N) << endl;
+	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	ReversPrintArr(arr_d, N);
+	cout << endl;
+	cout << "Сумма элементов массива INT: " << SummArr(arr, N) << endl;
+	cout << "Сумма элементов массива DOUBLE: " << SummArr(arr_d, N) << endl;
+	cout << "Среднее арифметическое элементов массива INT: " << AvgArr(arr, N) << endl;
+	cout << "Среднее арифметическое элементов массива DOUBLE: " << AvgArr(arr_d, N) << endl;
+	cout << "Минимальный элемент массива INT: " << minValueInArr(arr, N) << endl;
+	cout << "Минимальный элемент массива DOUBLE: " << minValueInArr(arr_d, N) << endl;
+	cout << "Максимальный элемент массива INT: " << maxValueInArr(arr, N) << endl;
+	cout << "Максимальный элемент массива DOUBLE: " << maxValueInArr(arr_d, N) << endl;
+	cout << endl;
 	int step;
 	cout << "На сколько двигаем? "; cin >> step;
 	while (step > N) step -= N; // Чтобы двигать с шагом больше, чем N
 	cout << endl;
-	cout << "\t\t\t" << "Сдвиг влево" << endl;
+	cout << endl << TAB_4 << "INT"<<endl;
+	cout << TAB_4 << "Сдвиг влево" << endl;
 	shiftLeft(arr, N, step);
 	PrintArr(arr, N);
 	cout << endl;
-	cout << "\t\t\t" << "Сдвиг вправо" << endl;
+	cout << TAB_4 << "Сдвиг вправо" << endl;
 	shiftRight(arr, N, step);
 	PrintArr(arr, N);
 	cout << endl;
-	cout << "\t\t\t" << "Массив уникальных чисел" << endl;
+	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	cout << TAB_4 << "Сдвиг влево" << endl;
+	shiftLeft(arr_d, N, step);
+	PrintArr(arr_d, N);
+	cout << endl;
+	cout << TAB_4 << "Сдвиг вправо" << endl;
+	shiftRight(arr_d, N, step);
+	PrintArr(arr_d, N);
+	cout << endl;
+	cout << endl;
+	cout << TAB_4 << "Массив уникальных чисел INT" << endl;
 	UniqueRand(arr, N);
 	PrintArr(arr, N);
+	cout << endl;
+	cout << TAB_4 << "Массив уникальных чисел DOUBLE" << endl;
+	UniqueRand(arr_d, N);
+	PrintArr(arr_d, N);
+	cout << endl;
+	cout << TAB_4 << "Сортировка" << endl;
 	Sort(arr, N);
 	PrintArr(arr, N);
+	cout << endl;
+	Sort(arr_d, N);
+	PrintArr(arr_d, N);
 }
 void FillRand(int arr[], const int N)
 {
 	for (int i = 0; i < N; i++)
 	{
 		arr[i] = rand() % 100;
+	}
+}
+void FillRand(double arr[], const int N)
+{
+	for (int i = 0; i < N; i++)
+	{
+		arr[i] = rand() % 100;
+		arr[i] /= 1.5;
 	}
 }
 template<typename T>
@@ -154,6 +200,26 @@ void UniqueRand(int arr[], const int n)
 		do
 		{
 			arr[i] = rand() % (n + 2);
+			unique = true;
+			for (int j = 0; j < i; j++)
+			{
+				if (arr[i] == arr[j])
+				{
+					unique = false;
+					break;
+				}
+			}
+		} while (!unique);
+	}
+}
+void UniqueRand(double arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		bool unique;
+		do
+		{
+			arr[i] = (rand() % (n + 2)) * 0.9;
 			unique = true;
 			for (int j = 0; j < i; j++)
 			{
