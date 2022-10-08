@@ -131,12 +131,13 @@
     <ClCompile Include="print.cpp" />
     <ClCompile Include="shift.cpp" />
     <ClCompile Include="Sort.cpp" />
-    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="statistic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CONST.h" />
     <ClInclude Include="fill_arr.h" />
+    <ClInclude Include="search.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="shift.h" />
     <ClInclude Include="sort.h" />

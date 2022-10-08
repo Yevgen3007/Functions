@@ -3,7 +3,7 @@ void FillRand(int arr[], const int N)
 {
 	for (int i = 0; i < N; i++)
 	{
-		arr[i] = rand() % 100;
+		arr[i] = rand() % (N - 3);
 	}
 }
 void FillRand(double arr[], const int N)

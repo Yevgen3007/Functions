@@ -5,21 +5,22 @@
 #include "statistic.h"
 #include "shift.h"
 #include "sort.h"
+#include "search.h"
 void main()
 {
 	setlocale(LC_ALL, "");
-	const int N = 10;
+	const int N = 15;
 	int arr[N];
 	double arr_d[N];
 	FillRand(arr, N);
 	FillRand(arr_d, N);
-	cout << TAB_4 << "INT"<<endl;
+	cout << TAB_4 << "INT" << endl;
 	PrintArr(arr, N);
-	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	cout << endl << TAB_4 << "DOUBLE" << endl;
 	PrintArr(arr_d, N);
-	cout << endl << TAB_4 << "INT"<<endl;
+	cout << endl << TAB_4 << "INT" << endl;
 	ReversPrintArr(arr, N);
-	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	cout << endl << TAB_4 << "DOUBLE" << endl;
 	ReversPrintArr(arr_d, N);
 	cout << endl;
 	cout << "Сумма элементов массива INT: " << SummArr(arr, N) << endl;
@@ -35,7 +36,7 @@ void main()
 	cout << "На сколько двигаем? "; cin >> step;
 	while (step > N) step -= N; // Чтобы двигать с шагом больше, чем N
 	cout << endl;
-	cout << endl << TAB_4 << "INT"<<endl;
+	cout << endl << TAB_4 << "INT" << endl;
 	cout << TAB_4 << "Сдвиг влево" << endl;
 	shiftLeft(arr, N, step);
 	PrintArr(arr, N);
@@ -44,7 +45,7 @@ void main()
 	shiftRight(arr, N, step);
 	PrintArr(arr, N);
 	cout << endl;
-	cout << endl << TAB_4 << "DOUBLE"<<endl;
+	cout << endl << TAB_4 << "DOUBLE" << endl;
 	cout << TAB_4 << "Сдвиг влево" << endl;
 	shiftLeft(arr_d, N, step);
 	PrintArr(arr_d, N);
@@ -68,4 +69,9 @@ void main()
 	cout << endl;
 	Sort(arr_d, N);
 	PrintArr(arr_d, N);
+	cout << endl;
+	cout << TAB_4 << "Посчет повторений значений массива" << endl;
+	FillRand(arr, N);
+	PrintArr(arr, N);
+	Search(arr, N);
 }
