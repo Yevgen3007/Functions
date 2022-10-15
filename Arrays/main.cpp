@@ -11,7 +11,6 @@
 #include "sort.h"
 #include "sort.cpp"
 #include "search.h"
-
 void main()
 {
 	setlocale(LC_ALL, "");
