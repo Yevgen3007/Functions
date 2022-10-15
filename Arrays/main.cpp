@@ -1,11 +1,17 @@
 ﻿#include "stdafx.h"
 #include "CONST.h"
 #include "fill_arr.h"
+//#include "fill_arr.cpp"	//Реализации НЕ шаблонных функций никогда НЕ подключаются на место вызова
 #include "print.h"
+#include "print.cpp"		//Реализации шаблонныъ функций всегда подключаются на место вызова
 #include "statistic.h"
+#include "statistic.cpp"
 #include "shift.h"
+#include "shift.cpp"
 #include "sort.h"
+#include "sort.cpp"
 #include "search.h"
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -70,7 +76,7 @@ void main()
 	Sort(arr_d, N);
 	PrintArr(arr_d, N);
 	cout << endl;
-	cout << TAB_4 << "Посчет повторений значений массива" << endl;
+	cout << TAB_4 << "Подсчет повторений значений массива" << endl;
 	FillRand(arr, N);
 	PrintArr(arr, N);
 	Search(arr, N);
